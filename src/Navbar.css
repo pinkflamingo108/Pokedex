@@ -1,0 +1,15 @@
+#navbar{
+background-color: #E74C3C ;
+margin: 0 auto;
+height: 5rem;
+}
+
+.img-container{
+    padding-left: 1rem;
+}
+
+.main-image{
+padding-top: .6rem;
+padding-bottom: .6rem;
+height: 4rem;
+}
