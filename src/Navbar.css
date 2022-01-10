@@ -1,15 +1,22 @@
+*{
+    padding: 0;
+    margin: 0;
+    
+    }
+
 #navbar{
 background-color: #E74C3C ;
-margin: 0 auto;
-height: 5rem;
+margin: 0;
+height: 4rem;
 }
 
-.img-container{
+.images-container{
     padding-left: 1rem;
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+   
 }
 
 .main-image{
-padding-top: .6rem;
-padding-bottom: .6rem;
-height: 4rem;
+height: 3rem;
 }

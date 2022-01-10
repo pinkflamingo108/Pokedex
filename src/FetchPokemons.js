@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
-import PokeCard from "./PokeCard";
+import "./FetchPokemons.css";
+import Pokeball from "./Pokeball.png";
 
 export const FetchPokemons = () => {
  const [info, setInfo] = useState([]);
@@ -29,8 +30,6 @@ export const FetchPokemons = () => {
   setmyUrl(previousUrl);
  }
 
- const container = [];
-
  const fetchPokemons = async () => {
   try {
    const promisesUrl = info?.results?.map(async (pokemons) => {
@@ -45,16 +44,51 @@ export const FetchPokemons = () => {
    });
    const urlResults = await Promise.all(promisesImages);
 
-   const imageResults = urlResults?.map(async (data) => {
-    return await data?.sprites?.other?.dream_world?.front_default;
-   });
-
-   const imagePromise = await Promise.all(imageResults);
-   setmyPokemons(imagePromise);
+   setmyPokemons(urlResults);
   } catch (err) {
    console.log(err);
   }
  };
+
+ function pokeColor(poke) {
+  if (poke === "grass") {
+   return "green";
+  } else if (poke === "water") {
+   return "blue";
+  } else if (poke === "fire") {
+   return "red";
+  } else if (poke === "poison") {
+   return "pink";
+  } else if (poke === "electric") {
+   return "yellow";
+  } else if (poke === "ground") {
+   return "brown";
+  } else if (poke === "normal") {
+   return "normal";
+  } else if (poke === "fairy") {
+   return "purple";
+  } else if (poke === "bug") {
+   return "bug";
+  } else if (poke === "bug") {
+   return "bug";
+  } else if (poke === "fighting") {
+   return "orange";
+  } else if (poke === "rock") {
+   return "grey";
+  } else if (poke === "psychic") {
+   return "psychic";
+  } else if (poke === "dragon") {
+   return "dragon";
+  } else if (poke === "ice") {
+   return "ice";
+  } else if (poke === "ghost") {
+   return "ghost";
+  } else if (poke === "ice") {
+   return "ice";
+  } else if (poke === "dark") {
+   return "dark";
+  }
+ }
 
  useEffect(() => {
   fetchPokemons();
@@ -72,79 +106,40 @@ export const FetchPokemons = () => {
 
  return (
   <div>
-   <div>List Of Pokemons</div>
-   <div>{info[0]?.count}</div>
-   <div>
-    <ul>
-     {info?.results?.map((data, idx) => {
-      return (
-       <div key={idx}>
-        <li> Name: {data?.name}</li>
-        <PokeCard pokemonInfo={myPokemons[idx]} />
+   <div className="pokemon-header">List Of Pokemons:</div>
+   <div className="pokemon-container">
+    {myPokemons?.map((info) => {
+     return (
+      <div id={pokeColor(info?.types[0]?.type?.name)} className="pokemon-box">
+       <div className="img-container">
+        <img
+         alt={info?.name}
+         className="poke-image"
+         src={info?.sprites?.other?.dream_world?.front_default}
+        />
        </div>
-      );
-     })}
-    </ul>
+       <div className="text-box">
+        <p className="paragraph">Name: {info?.name}</p>
+        <p className="paragraph">Height: {info?.height}ft</p>
+        <p className="paragraph">Type: {info?.types[0]?.type?.name}</p>
+       </div>
+       <div className="ball">
+        <img alt={Pokeball} src={Pokeball} />
+        <span className="poke-id"> #{info?.id}</span>
+       </div>
+      </div>
+     );
+    })}
+   </div>
 
-    <div>
-     <button onClick={previousPage}>Previous</button>
-     <button onClick={nextPage}>Next</button>
-    </div>
+   <div className="buttons-container">
+    <button id="main-btn" className="btn btn-primary" onClick={previousPage}>
+     Previous
+    </button>
+    <button id="main-btn" className="btn btn-primary" onClick={nextPage}>
+     Next
+    </button>
    </div>
   </div>
  );
 };
-
-// const testing = async (pokemons) => {
-//   try {
-//    const response = await fetch(
-//     `https://pokeapi.co/api/v2/pokemon/${pokemons}`
-//    );
-//    const json = await response.json();
-//    setAllPokemons(json);
-//   } catch (error) {
-//    console.log(error);
-//   }
-//  };
-
-// const container = [];
-// const testing = (pokemons) => {
-//  try {
-//   pokemons.forEach(async (data) => {
-//    const response = await fetch(
-//     `https://pokeapi.co/api/v2/pokemon/${data?.name}`
-//    );
-//    const json = await response.json();
-//    container.push(json?.sprites?.other?.dream_world?.front_default);
-//   });
-//  } catch (error) {
-//   console.log(error);
-//  }
-//  console.log(container);
-// };
-
-// Esta es la parte que estaba funcionando
-
-// const container = [];
-
-// info?.results?.map(async (data) => {
-//  container.push(data?.url);
-// });
-
-// const container2 = [];
-
-// const testing = (pokemons) => {
-//  try {
-//   pokemons.forEach(async (data, idx) => {
-//    const response = await fetch(data);
-//    const json = await response.json();
-//    container2.push(json?.sprites?.other?.dream_world?.front_default);
-//   });
-//  } catch (error) {
-//   console.log(error);
-//  }
-// };
-
-// testing(container);
-
-// console.log(container2);
