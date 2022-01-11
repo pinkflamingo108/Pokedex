@@ -110,10 +110,14 @@ export const FetchPokemons = () => {
    <div className="pokemon-container">
     {myPokemons?.map((info, idx) => {
      return (
-      <div id={pokeColor(info?.types[0]?.type?.name)} className="pokemon-box">
+      <div
+       key={idx}
+       id={pokeColor(info?.types[0]?.type?.name)}
+       className="pokemon-box"
+      >
        <div className="img-container">
         <img
-         key={idx}
+         key={info?.name}
          alt={info?.name}
          className="poke-image"
          src={info?.sprites?.other?.dream_world?.front_default}
@@ -125,7 +129,7 @@ export const FetchPokemons = () => {
         <p className="paragraph">Type: {info?.types[0]?.type?.name}</p>
        </div>
        <div className="ball">
-        <img key={idx} alt={Pokeball} src={Pokeball} />
+        <img alt={Pokeball} src={Pokeball} />
         <span className="poke-id"> #{info?.id}</span>
        </div>
       </div>

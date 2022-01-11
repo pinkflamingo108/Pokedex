@@ -12,7 +12,6 @@ const App = () => {
    .then((res) => res.json())
    .then(async (data) => {
     setinfo(data);
-    // console.log(info?.types[0]?.type?.name);
    })
    .catch((err) => console.log(err));
  };
@@ -75,7 +74,7 @@ const App = () => {
          <div>Height: {info?.height}ft</div>
          <div>Weight: {info?.weight}</div>
          <div>
-          My Pokemon Types:
+          My Pokemon Type is:
           {info?.types?.map((data) => {
            return <div>- {data?.type?.name}</div>;
           })}

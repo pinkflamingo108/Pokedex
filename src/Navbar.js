@@ -6,7 +6,7 @@ export const Navbar = () => {
  return (
   <div id="navbar">
    <div className="images-container">
-    <img className="main-image" src={pokeImage} />
+    <img alt="pokeImage" className="main-image" src={pokeImage} />
    </div>
   </div>
  );
